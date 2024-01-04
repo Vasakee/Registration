@@ -1,0 +1,12 @@
+POST  http://localhost:3001/api/Citizens
+Content-Type: application/json
+
+{
+    "firstName": "gd",
+    "lastName": "baba",
+    "middleName": "nand",
+    "phoneNumber": "2345678",
+    "email": "gd@email.com",
+    "stateOfOrigin": "Plateau",
+    "localGov": "Quaanpan"
+}
