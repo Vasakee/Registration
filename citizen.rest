@@ -1,0 +1,6 @@
+POST  http://localhost:3001/api/Citizens/_id
+Content-Type: application/json
+
+{
+    "_id" : "648c3345cae83f6be4da6fca"
+}

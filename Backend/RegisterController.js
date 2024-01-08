@@ -41,7 +41,7 @@ const registerCitizen = expressAsyncHandler(async (req, res) => {
     }
 })
 
-const getCitizen = expressAsyncHandler(async (req, res) => {
+const getCitizens = expressAsyncHandler(async (req, res) => {
     try {
         const Candidates = await Register.find();
         res.status(200).json(Candidates)
@@ -51,4 +51,30 @@ const getCitizen = expressAsyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { registerCitizen, getCitizen }
+const getCitizen = expressAsyncHandler(async (req, res) => {
+    const { _id } = req.body
+    try {
+        const Candidate = await Register.findById({ _id })
+        if (Candidate) {
+            res.status(200).json({
+                _id: Candidate._id,
+                firstName: Candidate.firstName,
+                lastName: Candidate.lastName,
+                middleName: Candidate.middleName,
+                phoneNumber: Candidate.phoneNumber,
+                email: Candidate.email,
+                stateOfOrigin: Candidate.stateOfOrigin,
+                localGov: Candidate.localGov,
+                dateOfBirth: Candidate.dateOfBirth
+            })
+        } else {
+            res.status(404);
+            throw new Error('Citizen not found')
+        }
+    } catch (error) {
+        res.status(400)
+        throw new Error(error.message)
+    }
+})
+
+module.exports = { registerCitizen, getCitizens, getCitizen }
